@@ -1,0 +1,64 @@
+<div class="pageHeader">
+      <form onsubmit="return navTabSearch(this);" action="/report/task/list" id="pagerForm" method="post">
+         <input type="hidden" name="pageNo" value="${pageNo!}" />
+         <input type="hidden" name="pageSize" value="${pageSize!}" />
+             <div class="searchBar">
+                    <table class="searchContent">
+                        <tr>
+                          <td>任务名称
+                            <input name="email" type="text" id="email" value="${email!}"/>&nbsp;
+                         </td>
+                         <td>数据源
+                            <input name="applyLoanNo" type="text" id="applyLoanNo"  value="${applyLoanNo!}"/>&nbsp;
+                         </td>
+                        </table>
+                         <div class="subBar">
+                                <ul>
+                                    <li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
+                                </ul>
+                           </div>
+             </div>
+      </form>
+</div>
+<div class="pageContent">
+    <div class="panelBar">
+        <ul class="toolBar">
+             <li><a class="add" href="/report/task/add" target="navTab" rel="dlg_page8"><span>新增任务</span></a></li>
+             <li><a class="edit" href="/report/task/change?id={sid_user}" target="dialog" rel="dlg_page8"><span>修改信息</span></a></li>
+             <li><a class="icon" href="/report/task/detail?id={sid_user}" target="navTab" rel="dlg_page8"><span>查看详情</span></a></li>
+             <li><a class="edit" href="/report/task/effective?id={sid_user}" target="ajaxTodo" title="确定要生效吗?"><span>生效</span></a></li>
+             <li><a class="delete" href="/report/task/invalid?id={sid_user}" target="ajaxTodo" title="确定要失效吗?"><span>失效</span></a></li>
+        </ul>
+    </div>
+    <table class="table" width="100%" layoutH="138">
+                   <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>任务名称</th>
+                        <th>数据源名称</th>
+                        <th>状态</th>
+                        <th>结果处理方式</th>
+                        <th>执行策略</th>
+                        <th>创建时间</th>
+                        <th>更新时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <#if page?exists>
+                       <#list page as model>
+                           <tr target="sid_user" rel="${model.id}">
+                             <td>${model.id!}</td>
+                             <td>${model.taskName!}</td>
+                             <td>${model.dataSourcesName!}</td>
+                             <td>${model.status.desc!}</td>
+                             <td>${model.fileHandle!}</td>
+                             <td>${model.fileHandle!}</td>
+                             <td>${model.createDate?string("yyyy-MM-dd HH:mm:ss")}</td>
+                             <td>${model.updateDate?string("yyyy-MM-dd HH:mm:ss ")}</td>
+                          </tr>
+                         </#list>
+                        </#if>
+                    </tbody>
+                </table>
+    <#include "/include/page.htm">
+</div>

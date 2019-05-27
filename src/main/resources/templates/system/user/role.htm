@@ -1,0 +1,59 @@
+<<style type="text/css">
+<!--
+   #userNotSelectRole div { cursor:pointer;margin-bottom: 2px;  }
+   #userSelectRole div { cursor:pointer;margin-bottom: 2px; }
+-->
+</style>
+<div class="pageContent" layoutH="0">
+	<div class="accordion" id="userSelectRole" style="width: 300px; float: left; margin: 5px;">
+		<div class="accordionHeader">
+			<h2>
+				<span>icon</span>已选择角色
+			</h2>
+		</div>
+	    	<div class="accordionContent" style="height: 600px">
+		   <#if (selectList?exists)>
+		    <#list selectList as model>
+              <div><a class="userSelect" data="${model.id?c}">${model.roleName}</a></div>
+		     </#list>
+           </#if>
+		</div>
+	</div>
+	<div class="accordion" id="userNotSelectRole" style="width: 300px; float: left; margin: 5px;">
+		<div class="accordionHeader">
+			<h2>
+				<span>icon</span>未选择角色
+			</h2>
+		</div>
+		<div class="accordionContent" style="height: 600px">
+		<#if (noSelectList?exists)>
+		<#list noSelectList as model>
+             <div><a class="userSelect" data="${model.id?c}">${model.roleName}</a></div>
+         </#list> </#if>
+		</div>
+	</div>
+	<div><button id="userRoleSaveBtn">保存修改</button></div>
+</div>
+    <form method="post" id="userRoleAddForm" action="/system/user/role" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+     <input type="hidden" id="userRoleUserId" name="userId" value="${userId?c}">
+     <input type="hidden" id="userRoleRoleIds" name="roleIds" value="">
+    </form>
+<script type="text/javascript">
+  var userSelectRole=$("#userSelectRole");
+  var userNotSelectRole=$("#userNotSelectRole");
+  userSelectRole.on("click",".userSelect",function(){
+      userNotSelectRole.find(".accordionContent").append($(this));
+  });
+   userNotSelectRole.on("click",".userSelect",function(){
+     userSelectRole.find(".accordionContent").append($(this));   
+   });
+   $("#userRoleSaveBtn").click(function(){
+       var roleIds=[];
+       $.each(userSelectRole.find(".userSelect"),function(){
+         roleIds.push($(this).attr("data"));   
+       });
+       $("#userRoleRoleIds").val(roleIds.join(","));
+       $("#userRoleAddForm").submit();
+   });
+  
+</script>

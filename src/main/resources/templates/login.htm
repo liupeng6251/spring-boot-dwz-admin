@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="${rc.contextPath}/static/bootstrap/css/bootstrap.min.css">
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]><script src="/static/dwz_jui/js/speedup.js" type="text/javascript"></script><script src="/static/dwz_jui/js/jquery-1.11.3.min.js" type="text/javascript"></script><![endif]-->
+  <!--[if gte IE 9]><!--><script src="/static/dwz_jui/js/jquery-2.1.4.min.js" type="text/javascript"></script><!--<![endif]-->
+   <script src="/static/dwz_jui/js/jquery.validate.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="${rc.contextPath}/static/css/login.css">
+    <title>用户登录</title>
+</head>
+
+
+<body>
+  <div class="container-fluid">
+		<div class="row">
+		  <div class="col-sm-2 col-lg-2"></div>
+		  <div class="col-sm-4 col-lg-4 name">
+		      <div class="jumbotron">
+		      	  <h2></h2>
+				  <h2>管理平台系统</h2>
+			  </div>
+		  </div>
+		  <div class="col-sm-4 col-lg-4 login">
+		    <form id="loginForm" action="${rc.contextPath}/login" method="POST">
+			  <div class="form-group">
+			    <label for="userName">用户名</label>
+			    <input type="text" name="username" class="form-control" id="userName" placeholder="请输入用户名" required maxlength="100">
+			  </div>
+			  <div class="form-group">
+			    <label for="password">密码</label>
+			    <input type="password" name="password"  class="form-control" id="password" placeholder="请输入密码" required maxlength="50">
+			  </div>
+		  	  <div class="checkbox">
+			    <label class="red"><span id="error_p"  class='error_p'>${msg!}</span></label>
+			  </div>
+			  <button type="button" id="submitBtn" class="btn btn-primary btn-block">登录</button>
+			</form>
+		  </div>
+		  <div class="col-sm-2 col-lg-2"></div>
+		</div>
+  </div>
+
+<script type="text/javascript">
+	function login(){
+        $("#error_p").html("");
+		if($("#loginForm").validate().form()){
+    		var userName=$("#userName").val();
+    		var password=$("#password").val();
+    		if(!userName || !password){
+    		    $("#error_p").html("用户名和密码不能为空！");
+    		    return false;   
+    		}
+    		 $.ajax({
+    		        type: 'POST',
+    		        url: "/login",
+    		        dataType:"json",
+    		        data: {
+    		            username : userName,
+    		            password : password
+    		        },
+    		        success: function(data) {
+    		            if (data.status=="true") {
+    		                window.location= "/index"
+    		            } else {
+    		                $("#error_p").html(data.message);
+    		            }
+    		        } ,
+    		        error : function() {
+    		            alert("异常请重试");
+    		        }
+    		    });
+		}
+	}
+
+	$(document).ready(function(){
+		$("#loginForm input").bind("keypress",function(evt){
+			if(evt.keyCode == "13"){
+				login();
+			}
+		})
+		$("#submitBtn").click(login);
+	});
+
+</script>
+	<nav class="navbar navbar-inverse navbar-fixed-bottom">
+		<div>开源软件</div>
+		<div>Copyright 2016-2017,版权所有qvit.COM</div>
+	</nav>
+</body>
+</html>

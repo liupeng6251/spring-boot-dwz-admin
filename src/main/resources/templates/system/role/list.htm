@@ -1,0 +1,40 @@
+<h2 class="contentTitle">角色管理</h2>
+<div class="pageContent">
+	<div class="panel">
+		<h1>角色管理</h1>
+		<div class="pageContent">
+			<div class="panelBar">
+				<ul class="toolBar">
+					<li><a class="add" href="/system/role/add" target="dialog"
+						mask="true" rel="dlg_page8"><span>新增角色</span></a></li>
+					<li><a class="edit" href="/system/role/addMenu?id={sid_user}"
+						target="navTab" fresh="true" mask="true" rel="dlg_page8"><span>菜单分配</span></a></li>
+					<li><a class="delete" href="/system/role/delete?id={sid_user}"
+						target="ajaxTodo" mask="true" title="确定要删除吗?"><span>删除角色</span></a></li>
+				</ul>
+			</div>
+			<table class="table" width="100%" layoutH="138">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>角色名</th>
+						<th>描述</th>
+						<th>创建时间</th>
+						<th>更新时间</th>
+					</tr>
+				</thead>
+				<tbody>
+					<#if roles?exists> <#list roles as model> 
+						<tr target="sid_user" rel="${model.id!}">
+							<td>${model.id?c}</td>
+							<td>${model.roleName}</td>
+							<td>${model.roleDesc}</td>
+							<td>${model.createDate?string("yyyy-MM-dd HH:mm:ss")}</td>
+							<td>${model.updateDate?string("yyyy-MM-dd HH:mm:ss")}</td>
+						</tr>
+					</#list> </#if>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

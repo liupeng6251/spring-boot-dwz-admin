@@ -1,0 +1,54 @@
+<div class="pageContent">
+    <form method="post" action="/system/user/add" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+        <div class="pageFormContent" layoutH="56">
+            <p>
+                <label>姓名：</label>
+                <input name="userName"  class="required"  type="text" size="30" value="" alt="请输入姓名"/>
+            </p>
+            <p>
+                <label>邮箱：</label>
+                <input name="email" class="required" type="text" size="30" value="" alt="请输入邮箱"/>
+            </p>
+            <p>
+                <label>电话号码：</label>
+                 <input name="mobile" class="required" type="text" size="30" value="" alt="请输入电话"/>
+            </p>
+            <p>
+                <label>部门：</label>
+                <input type="text"  value="" name="department" class="textInput">
+            </p>
+            <p>
+                <label>职位：</label>
+                <input name="occupation" class="textInput" type="text" size="30" />
+            </p>
+            <p>
+                <label>工号：</label>
+                <input name="jobNumber" class="required" type="text" size="30" value="" alt="请输入工号"/>
+            </p>
+            <p>
+                <label>入职日期：</label>
+                   <input type="text" style="width:120px;" class="form-control datepicker" id="entryDate" name="entryDate" value="$!entryDate"  onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd'})"/>
+            </p>
+            <p>
+                <label>默认密码：</label>
+                <input name="password" class="required" type="text" size="30" value="hetrone@123" alt="请输入默认密码"/>
+            </p>
+            <p>
+                <label>状态：</label>
+               <select name="status" class="required combox">
+                    <option value="">请选择</option>
+                    <option value="2" selected>有效</option>
+                    <option value="1" >无效</option>
+                </select>
+            </p>
+        </div>
+        <div class="formBar">
+            <ul>
+                <li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+                <li>
+                    <div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+*{
+	font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu
+}
+body{
+	background:#E8F2FE;
+}
+@media (min-width: 768px){
+	/* form{
+    position: fixed;
+    left: 60%;
+    top: 20%;
+   } */
+   .row{
+       margin-top: 14%;
+   }
+   .name{
+   border-radius: 10px 0px 0px 10px;
+   }
+   .login{
+   border-radius: 0px 10px 10px 0px;
+   }
+}
+.col-sm-4.col-lg-4{
+	  box-shadow: 1px 2px 5px 3px #D2D8D8;
+      background-color: #E8F2FE;
+      padding: 10px;
+   }
+ .jumbotron{
+    background-color: #E8F2FE;
+	text-align: center;
+	margin-bottom: 0px !important;
+}
+.error{
+	color:red
+}
+
+
+ 

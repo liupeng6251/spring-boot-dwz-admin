@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script src="/static/handsontable/dist/jquery.min.js"></script>
+<script src="/static/handsontable/dist/handsontable.full.js"></script>
+<h2 class="contentTitle">新增任务</h2>
+<div class="pageFormContent" layoutH="60">
+    <form method="post" action="/report/task/add" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+		<fieldset>
+			<legend>基本设置</legend>
+			<dl>
+				<dt>任务名称：</dt>
+				<dd> <input name="taskName"  class="required"  type="text" size="30" value="" alt="请输入数据源名称"/></dd>
+			</dl>
+			<dl>
+				<dt>数据源配置：</dt>
+				<dd><select name="driverClass" class="required combox">
+	                    <option value="">请选择</option>
+	                    <option value="com.mysql.jdbc.Driver" selected>com.mysql.jdbc.Driver</option>
+	                    <option value="oracle.jdbc.driver.OracleDriver" >oracle.jdbc.driver.OracleDriver</option>
+	                	<option value="com.microsoft.sqlserver.jdbc.SQLServerDriver" >com.microsoft.sqlserver.jdbc.SQLServerDriver</option>
+	                	<option value="com.sybase.jdbc3.jdbc.SybDriver" >com.sybase.jdbc3.jdbc.SybDriver</option>
+	                     <option value="org.postgresql.Driver" >org.postgresql.Driver</option>
+	            
+	             </select></dd>
+			</dl>
+			<dl>
+				<dt>执行策略：</dt>
+				<dd><input class="required" name="field3" type="text" /></dd>
+			</dl>
+			<dl>
+				<dt>处理方式：</dt>
+				<dd><select name="driverClass" class="required combox">
+	                    <option value="">请选择</option>
+	                    <option value="告警邮件" selected>告警邮件</option>
+	                    <option value="导出数据并发送邮件" >导出数据并发送邮件</option>
+	                	<option value="导出数据上传到服务器" >导出数据上传到服务器</option>
+	                 </select>
+	            </dd>
+			</dl>
+			<dl>
+				<dt>状态：</dt>
+				<dd><input readonly="true" name="field5" type="text" /></dd>
+			</dl>
+		</fieldset>
+		<fieldset>
+			<legend>导出sql配置</legend>
+			<dl class="nowrap">
+				<dt>普通文本框：</dt>
+				<dd><textarea name="textarea1" cols="80" rows="2"></textarea></dd>
+			</dl>
+		</fieldset>
+		<fieldset>
+		<div id="handsontable_head" ></div>
+		</fieldset>
+		 <div class="formBar">
+            <ul>
+                <li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+                <li>
+                    <div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+                </li>
+            </ul>
+        </div>
+	</form>
+	<script type="text/javascript">
+	function getData() {
+		  return [
+		    ['', 'Kia', 'Nissan', 'Toyota', 'Honda'],
+		    ['2008', 10, 11, 12, 13],
+		    ['2009', 20, 11, 14, 13],
+		    ['2010', 30, 15, 12, 13]
+		  ];
+		}
+		// Instead of creating a new Handsontable instance with the container element passed as an argument,
+		// you can simply call .handsontable method on a jQuery DOM object.
+		var $container = $("#handsontable_head");
+
+		$container.handsontable({
+		  data: getData(),
+		  startRows: 5,
+		  startCols: 5,
+		  minRows: 5,
+		  minCols: 5,
+		  maxRows: 10,
+		  maxCols: 10,
+		  rowHeaders: true,
+		  colHeaders: true,
+		  minSpareRows: 1,
+		  contextMenu: true
+		});
+
+		// This way, you can access Handsontable api methods by passing their names as an argument, e.g.:
+		var hotInstance = $("#handsontable_head").handsontable('getInstance');
+	</script>
+</div>
+</body>
+</html>

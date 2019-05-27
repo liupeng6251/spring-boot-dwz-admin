@@ -1,0 +1,35 @@
+<h2 class="contentTitle">角色菜单管理</h2>
+
+<div id="resultBox"></div>
+<div style="float: left; display: block; margin: 10px; overflow: auto; width: 500px; overflow: auto; border: solid 1px #CCC; line-height: 21px; background: #FFF;">
+<form method="post" action="/system/role/saveMenu" class="pageForm required-validate" onsubmit="return validateCallback(this,navTabAjaxDone)">
+<input type="hidden" name="userId" value="${userId}">
+<ul class="tree treeFolder treeCheck expand">
+	<#if menus?exists> <#list menus as model> 
+    <li><a tname="name" tvalue="${model.id}">${model.menuName!}</a>
+        <ul>
+          <#if model.childrens?exists> <#list model.childrens as model02> 
+            <li><a tname="name" tvalue="${model02.id}">${model02.menuName!}</a>
+                <ul>
+               <#if model02.childrens?exists> <#list model02.childrens as model03> 
+                    <li><a tname="name" tvalue="${model03.id}" 
+                   <#if selectList??> 
+                   <#if selectList?seq_contains("${model03.id}")>checked="checked"</#if>  
+                   </#if>
+                   ${selectList?seq_contains(model03.id)?string("checked=\"checked\"", "no")}
+                      >${model03.menuName}</a></li>
+                  </#list></#if>
+                </ul>
+            </li>
+            </#list></#if>
+        </ul>
+    </li>
+  </#list></#if>
+</ul>
+
+<input type="submit" value="保存"/>
+</form>
+</div>
+<script type="text/javascript">
+	
+</script>

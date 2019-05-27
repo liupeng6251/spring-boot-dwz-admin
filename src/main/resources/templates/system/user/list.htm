@@ -1,0 +1,72 @@
+<div class="pageHeader">
+      <form onsubmit="return navTabSearch(this);" action="/system/user/list" id="pagerForm" method="post">
+         <input type="hidden" name="pageNo" value="${pageNo!}" />
+         <input type="hidden" name="pageSize" value="${pageSize!}" />
+             <div class="searchBar">
+                    <table class="searchContent">
+                        <tr>
+                          <td>邮箱
+                            <input name="email" type="text" id="email" value="${email!}"/>&nbsp;
+                         </td>
+                         <td>电话
+                            <input name="mobile" type="text" id="mobile"  value="${mobile!}"/>&nbsp;
+                         </td>
+                        </table>
+                         <div class="subBar">
+                                <ul>
+                                    <li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
+                                </ul>
+                           </div>
+             </div>
+      </form>
+</div>
+<div class="pageContent">
+    <div class="panelBar">
+        <ul class="toolBar">
+           <li><a class="add" href="/system/user/add" target="dialog" rel="dlg_page8"><span>新增用户</span></a></li>
+             <li><a class="edit" href="/system/user/changePassword?id={sid_user}" target="dialog" rel="dlg_page8"><span>修改密码</span></a></li>
+             <li><a class="edit" href="/system/user/change?id={sid_user}" target="dialog" rel="dlg_page8"><span>修改信息</span></a></li>
+             <li><a class="edit" href="/system/user/role?id={sid_user}" target="navTab" rel="dlg_page8"><span>角色分配</span></a></li>
+             <li><a class="delete" href="/system/user/effective?id={sid_user}" target="ajaxTodo" title="确定要失效吗?"><span>生效</span></a></li>
+             <li><a class="delete" href="/system/user/invalid?id={sid_user}" target="ajaxTodo" title="确定要生效吗?"><span>失效</span></a></li>
+        </ul>
+    </div>
+    <table class="table" width="100%" layoutH="138">
+                   <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>用户姓名</th>
+                        <th>邮箱</th>
+                        <th>电话</th>
+                        <th>部门</th>
+                        <th>职务</th>
+                        <th>工号</th>
+                        <th>状态</th>
+                        <th>入职时间</th>
+                        <th>创建时间</th>
+                        <th>更新时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <#if (page.results)??>
+                       <#list page.results as model>
+                           <tr target="sid_user" rel="${model.id}">
+                             <td>${model.id!}</td>
+                             <td>${model.userName!}</td>
+                             <td>${model.email!}</td>
+                             <td>${model.mobile!}</td>
+                             <td>${model.department!}</td>
+                             <td>${model.occupation!}</td>
+                             <td>${model.jobNumber!}</td>
+                             <td>${model.status.desc!}</td>
+                             <td>${model.entryDate?string("yyyy-MM-dd HH:mm:ss")}</td>
+                             <td>${model.createDate?string("yyyy-MM-dd HH:mm:ss")}</td>
+                             <td>${model.updateDate?string("yyyy-MM-dd HH:mm:ss ")}</td>
+                          </tr>
+                         </#list>
+                        </#if>
+                    </tbody>
+                </table>
+              <#import "/include/page.htm" as commonPage/>
+              <@commonPage.commonPage page/>
+</div>

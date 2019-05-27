@@ -1,0 +1,31 @@
+<div class="pageContent">
+    <form method="post" action="/system/menu/add" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+        <div class="pageFormContent" layoutH="56">
+        <input type="hidden" value="${parentId!}" name="parentId">
+            <p>
+                <label>菜单名称：</label>
+                <input name="userName"  class="required"  type="text" size="30" value="" alt="请输入名称"/>
+            </p>
+            <p>
+                <label>菜单url：</label>
+                <input name="menuUrl"  type="text" size="30" value="" alt="请输入url"/>
+            </p>
+            <p>
+                <label>菜单状态：</label>
+               <select name="status" class="required combox">
+                    <option value="">请选择</option>
+                    <option value="2" selected>有效</option>
+                    <option value="1" >无效</option>
+                </select>
+            </p>
+        </div>
+        <div class="formBar">
+            <ul>
+                <li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+                <li>
+                    <div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>

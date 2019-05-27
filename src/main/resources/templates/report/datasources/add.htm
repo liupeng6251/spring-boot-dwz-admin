@@ -1,0 +1,46 @@
+<div class="pageContent">
+    <form method="post" action="/report/datasources/add" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+        <div class="pageFormContent" layoutH="56">
+            <p>
+                <label>数据源名称：</label>
+                <input name="name"  class="required"  type="text" size="30" value="" alt="请输入数据源名称"/>
+            </p>
+            <p>
+                <label>驱动：</label>
+                 <select name="driverClass" class="required combox">
+                    <option value="">请选择</option>
+                    <option value="com.mysql.jdbc.Driver" selected>com.mysql.jdbc.Driver</option>
+                    <option value="oracle.jdbc.driver.OracleDriver" >oracle.jdbc.driver.OracleDriver</option>
+                	<option value="com.microsoft.sqlserver.jdbc.SQLServerDriver" >com.microsoft.sqlserver.jdbc.SQLServerDriver</option>
+                	<option value="com.sybase.jdbc3.jdbc.SybDriver" >com.sybase.jdbc3.jdbc.SybDriver</option>
+                     <option value="org.postgresql.Driver" >org.postgresql.Driver</option>
+            
+                </select>
+            </p>
+            <p>
+                <label>用户名：</label>
+                 <input name="userName" class="required" type="text" size="30" value="" alt="请输入用户名"/>
+            </p>
+            <p>
+                <label>密码：</label>
+                <input type="text"  value=""  class="required" name="password" >
+            </p>
+            <p>
+                <label>端口号：</label>
+                <input name="port"   class="required" type="text" size="30" />
+            </p>
+             <p>
+               <label>链接地址：</label>
+                <input name="dbUrl"  class="required" type="text" size="35" />
+            </p>
+        </div>
+        <div class="formBar">
+            <ul>
+                <li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+                <li>
+                    <div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>
